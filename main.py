@@ -198,7 +198,7 @@ def main() -> None:
     db.add_item("1234")
     # Create the Updater and pass it your bot's token.
     TOKEN = '5111264889:AAFtCG0lLWSiHLLLiSU_jwocWU5RJxO0e3c'
-    APP_NAME='https://app-name.herokuapp.com/'
+    APP_NAME='https://bt1bot.herokuapp.com/'
     # https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/conversationbot.py
     updater = Updater(TOKEN)
 
