@@ -1,6 +1,6 @@
 import logging
 from dbhelper import DBHelper
-
+import os
 
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -18,6 +18,8 @@ from telegram.ext import (
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
+
+PORT = int(os.environ.get('PORT', '8443'))
 
 logger = logging.getLogger(__name__)
 
@@ -196,6 +198,7 @@ def main() -> None:
     db.add_item("1234")
     # Create the Updater and pass it your bot's token.
     TOKEN = '5111264889:AAFtCG0lLWSiHLLLiSU_jwocWU5RJxO0e3c'
+    APP_NAME='https://app-name.herokuapp.com/'
     # https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/conversationbot.py
     updater = Updater(TOKEN)
 
@@ -222,7 +225,7 @@ def main() -> None:
 
     # Start the Bot
     updater.start_polling()
-
+    updater.start_webhook(listen="0.0.0.0",port=PORT,url_path=TOKEN,webhook_url=APP_NAME + TOKEN)
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
